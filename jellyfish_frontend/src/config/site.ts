@@ -8,10 +8,6 @@ export const siteConfig = {
       label: "Home",
       href: "/",
     },
-    {
-      label: "Login",
-      href: "/login",
-    },
   ],
   navMenuItems: [],
   links: {

@@ -1,4 +1,4 @@
-import { Button } from "@heroui/button";
+import { Button, PressEvent } from "@heroui/button";
 import { Kbd } from "@heroui/kbd";
 import { Link } from "@heroui/link";
 import { Input } from "@heroui/input";
@@ -16,8 +16,15 @@ import {
 } from "@/components/icons";
 import clsx from "clsx";
 import { link as linkStyles } from "@heroui/theme";
+import { useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
+  const navigate = useNavigate()
+
+  function handlePress(e: PressEvent): void {
+    let loc: string = (e.target?.textContent) ? e.target.textContent.toLowerCase() : ""
+    navigate("/" + loc)
+  };
 
 
   return (
@@ -35,9 +42,10 @@ export const Navbar = () => {
       </NavbarContent>
 
 
+      {/* TODO: Make this a tab, and find a way to pass data here */}
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        {siteConfig.navItems.map((item) => (
-          <NavbarItem>
+        {siteConfig.navItems.map((item, i) => (
+          <NavbarItem key={i}>
             <Link className={clsx(
               linkStyles({ color: "foreground" }),
               "data-[active=true]:text-primary data-[active=true]:font-medium"
@@ -54,8 +62,8 @@ export const Navbar = () => {
         justify="end"
       >
         <NavbarItem className="hidden sm:flex gap-2">
-          <Button size="sm">Login</Button>
-          <Button size="sm">Signup</Button>
+          <Button size="sm" onPress={handlePress}>Login</Button>
+          <Button size="sm" onPress={handlePress}>Signup</Button>
           <Link isExternal href={siteConfig.links.github} title="GitHub">
             <GithubIcon className="text-default-500" />
           </Link>
