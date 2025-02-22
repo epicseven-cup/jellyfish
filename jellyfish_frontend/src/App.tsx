@@ -9,10 +9,22 @@ import AboutPage from "@/pages/about";
 import { HeroUIProvider } from "@heroui/system";
 import { useNavigate, useHref } from "react-router-dom";
 import { Navbar } from "@/components/navbar";
+import Login from "./pages/login";
+import { Sign } from "crypto";
+import Signup from "./pages/signup";
+import { RouterOptions } from "@react-types/shared";
 
 declare module "@react-types/shared" {
   interface RouterConfig {
     routerOptions: NavigateOptions;
+  }
+}
+
+
+
+declare module "@react-types/shared" {
+  interface RouterConfig {
+    routerOptions: RouterOptions;
   }
 }
 
@@ -24,10 +36,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route element={<IndexPage />} path="/" />
-          <Route element={<DocsPage />} path="/docs" />
-          <Route element={<PricingPage />} path="/pricing" />
-          <Route element={<BlogPage />} path="/blog" />
-          <Route element={<AboutPage />} path="/about" />
+          <Route element={<Login/>} path="/login" />
+          <Route element={<Signup/>} path="/signup" />
         </Routes>
       </HeroUIProvider>
     </>

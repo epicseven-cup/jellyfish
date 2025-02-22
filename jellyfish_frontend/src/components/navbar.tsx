@@ -15,12 +15,16 @@ import {
   GithubIcon,
 } from "@/components/icons";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+
 
 export const Navbar = () => {
 
+  const navigate = useNavigate();
+
+  const [tabList, setTabList]= useState(siteConfig.navItems)
+
   const { pathname } = useLocation();
-  console.log(pathname)
   const [disable, setDisable] = useState({
     login: false,
     signup: false,
@@ -34,17 +38,24 @@ export const Navbar = () => {
         signup: false,
       })
 
+      navigate("/login")
+
     } else if (element === "signup") {
       setDisable({
         login: false,
         signup: true,
 
       })
+
+      navigate("/signup")
     } else {
       setDisable({
         login: false,
         signup: false,
       })
+
+      navigate("/")
+
     }
   }
 
@@ -67,12 +78,9 @@ export const Navbar = () => {
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
 
         <Tabs variant="underlined" aria-label="Tabs" disableAnimation={false} selectedKey={pathname}>
-          {siteConfig.navItems.map((item) => (
+          {tabList.map((item) => (
             <Tab key={item.href} title={item.label} href={item.href}></Tab>
           ))}
-          {/* <Tab key={"/"} title={"Home"}></Tab>
-          <Tab key={"/about"} title={"About"} ></Tab>
-          <Tab key={"/doc"} title={"Doc"}></Tab> */}
 
         </Tabs>
       </NavbarContent>
@@ -82,8 +90,8 @@ export const Navbar = () => {
         justify="end"
       >
         <NavbarItem className="hidden sm:flex gap-2">
-          <Button size="sm" isDisabled={disable.login} onPress={buttonPress}>Login</Button>
-          <Button size="sm" isDisabled={disable.signup} onPress={buttonPress}>Signup</Button>
+          <Button size="sm" isDisabled={disable.login} onPress={buttonPress} >Login</Button>
+          <Button size="sm" isDisabled={disable.signup} onPress={buttonPress} >Signup</Button>
           <Link isExternal href={siteConfig.links.github} title="GitHub">
             <GithubIcon className="text-default-500" />
           </Link>
