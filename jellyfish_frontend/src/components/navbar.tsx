@@ -14,21 +14,25 @@ import { ThemeSwitch } from "@/components/theme-switch";
 import {
   GithubIcon,
 } from "@/components/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import path from "path";
 
 
 export const Navbar = () => {
 
   const navigate = useNavigate();
 
-  const [tabList, setTabList]= useState(siteConfig.navItems)
+  const [tabList, setTabList] = useState(siteConfig.navItems)
 
   const { pathname } = useLocation();
+
   const [disable, setDisable] = useState({
     login: false,
     signup: false,
   })
+
+
 
   function buttonPress(e: PressEvent): void {
     const element: string = e.target.textContent ? e.target.textContent.toLowerCase() : ""
@@ -59,6 +63,21 @@ export const Navbar = () => {
     }
   }
 
+  useEffect(() => {
+    if (pathname !== "/login" && pathname !== "/signup") {
+      
+      setDisable({
+        login: false,
+        signup: false,
+      })
+    }
+  }, [pathname])
+
+
+  function tabChange(key: React.Key): void {
+    console.log(key)
+  }
+
   return (
     <HeroUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -74,10 +93,9 @@ export const Navbar = () => {
       </NavbarContent>
 
 
-      {/* TODO: Make this a tab, and find a way to pass data here */}
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
 
-        <Tabs variant="underlined" aria-label="Tabs" disableAnimation={false} selectedKey={pathname}>
+        <Tabs variant="underlined" aria-label="Tabs" disableAnimation={false} selectedKey={pathname} onSelectionChange={tabChange}>
           {tabList.map((item) => (
             <Tab key={item.href} title={item.label} href={item.href}></Tab>
           ))}
