@@ -2,9 +2,10 @@ import { Form } from "@heroui/form";
 import { Input } from "@heroui/input"
 import { Button } from "@heroui/button";
 import { useState } from "react";
+import DefaultLayout from "@/layouts/default";
 export default function Signup() {
     return (
-        <div className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+        <DefaultLayout>
             <Form
                 className="w-full max-w-xs flex flex-col gap-4"
                 onSubmit={(e) => {
@@ -46,6 +47,6 @@ export default function Signup() {
                     </Button>
                 </div>
             </Form>
-        </div>
+        </DefaultLayout>
     )
 }
