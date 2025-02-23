@@ -134,13 +134,13 @@ export const Navbar = () => {
         <NavbarItem className="hidden sm:flex gap-4">
 
           {showButtons ?
-            <ButtonGroup>
-              <Button size="sm" isDisabled={disable.login} onPress={buttonPress} >Login</Button>
-              <Button size="sm" isDisabled={disable.signup} onPress={buttonPress} >Signup</Button>
-              <Link isExternal href={siteConfig.links.github} title="GitHub">
+            <><ButtonGroup>
+              <Button size="sm" isDisabled={disable.login} onPress={buttonPress}>Login</Button>
+              <Button size="sm" isDisabled={disable.signup} onPress={buttonPress}>Signup</Button>
+
+            </ButtonGroup><Link isExternal href={siteConfig.links.github} title="GitHub">
                 <GithubIcon className="text-default-500" />
-              </Link>
-            </ButtonGroup>
+              </Link></>
             :
             <Avatar size="sm" isBordered name="Test" />}
           <ThemeSwitch />

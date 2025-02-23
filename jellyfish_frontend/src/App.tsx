@@ -15,6 +15,7 @@ import { Sign } from "crypto";
 import Signup from "./pages/signup";
 import { RouterOptions } from "@react-types/shared";
 import { Footer } from "./components/footer";
+import Setting from "./pages/setting";
 
 declare module "@react-types/shared" {
   interface RouterConfig {
@@ -40,6 +41,7 @@ function App() {
           <Route element={<IndexPage />} path="/" />
           <Route element={<Login/>} path="/login" />
           <Route element={<Signup/>} path="/signup" />
+          <Route element={<Setting/>} path="/setting" />
         </Routes>
 
       <Footer />
