@@ -1,4 +1,4 @@
-import { Button, PressEvent } from "@heroui/button";
+import { Button, ButtonGroup, PressEvent } from "@heroui/button";
 import { Link } from "@heroui/link";
 import {
   Navbar as HeroUINavbar,
@@ -8,6 +8,7 @@ import {
 } from "@heroui/navbar";
 
 import { Tab, Tabs } from "@heroui/tabs"
+import { Avatar } from "@heroui/avatar"
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
@@ -16,14 +17,23 @@ import {
 } from "@/components/icons";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import path from "path";
-
 
 export const Navbar = () => {
 
   const navigate = useNavigate();
 
+
+  const [showButtons, setShowButtons] = useState(
+    true
+  )
+
+
+  const [authCookie, setAuthCookie] = useState(
+    (document.cookie.split(";").some((field => field.trim().startsWith("auth_jwt")))) ? true : false)
+
   const [tabList, setTabList] = useState(siteConfig.navItems)
+
+
 
   const { pathname } = useLocation();
 
@@ -65,11 +75,25 @@ export const Navbar = () => {
 
   useEffect(() => {
     if (pathname !== "/login" && pathname !== "/signup") {
-      
+
       setDisable({
         login: false,
         signup: false,
       })
+    }
+
+    if (authCookie) {
+
+      let pages: { label: string, href: string }[] = [
+        { label: "Home", href: "/" },
+        { label: "Courses", href: "/courses" },
+        { label: "Grade", href: "/grade" },
+        { label: "Setting", href: "/setting" },
+      ]
+
+      setTabList(pages)
+      setShowButtons(false)
+
     }
   }, [pathname])
 
@@ -107,15 +131,21 @@ export const Navbar = () => {
         className="hidden sm:flex basis-1/5 sm:basis-full"
         justify="end"
       >
-        <NavbarItem className="hidden sm:flex gap-2">
-          <Button size="sm" isDisabled={disable.login} onPress={buttonPress} >Login</Button>
-          <Button size="sm" isDisabled={disable.signup} onPress={buttonPress} >Signup</Button>
-          <Link isExternal href={siteConfig.links.github} title="GitHub">
-            <GithubIcon className="text-default-500" />
-          </Link>
+        <NavbarItem className="hidden sm:flex gap-4">
+
+          {showButtons ?
+            <ButtonGroup>
+              <Button size="sm" isDisabled={disable.login} onPress={buttonPress} >Login</Button>
+              <Button size="sm" isDisabled={disable.signup} onPress={buttonPress} >Signup</Button>
+              <Link isExternal href={siteConfig.links.github} title="GitHub">
+                <GithubIcon className="text-default-500" />
+              </Link>
+            </ButtonGroup>
+            :
+            <Avatar size="sm" isBordered name="Test" />}
           <ThemeSwitch />
         </NavbarItem>
       </NavbarContent>
-    </HeroUINavbar>
+    </HeroUINavbar >
   );
 };
