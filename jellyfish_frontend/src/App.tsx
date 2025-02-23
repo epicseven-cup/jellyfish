@@ -2,10 +2,6 @@ import { NavigateOptions, Route, Routes } from "react-router-dom";
 
 import { Link } from "@heroui/link";
 import IndexPage from "@/pages/index";
-import DocsPage from "@/pages/docs";
-import PricingPage from "@/pages/pricing";
-import BlogPage from "@/pages/blog";
-import AboutPage from "@/pages/about";
 
 import { HeroUIProvider } from "@heroui/system";
 import { useNavigate, useHref } from "react-router-dom";
@@ -16,6 +12,7 @@ import Signup from "./pages/signup";
 import { RouterOptions } from "@react-types/shared";
 import { Footer } from "./components/footer";
 import Setting from "./pages/setting";
+import Grade from "./pages/grade";
 
 declare module "@react-types/shared" {
   interface RouterConfig {
@@ -42,6 +39,7 @@ function App() {
           <Route element={<Login/>} path="/login" />
           <Route element={<Signup/>} path="/signup" />
           <Route element={<Setting/>} path="/setting" />
+          <Route element={<Grade/>} path="/grade" />
         </Routes>
 
       <Footer />
