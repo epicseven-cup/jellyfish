@@ -38,6 +38,7 @@ export default function Setting() {
             )
     });
     return (
+        // Switch to default layout here later
         <div className="flex py-5 px-10 items-center gap-20 justify-center">
             {authCookie ?
                 <><Card className="py-4 flex">
