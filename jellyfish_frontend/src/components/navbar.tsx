@@ -43,6 +43,9 @@ export const Navbar = () => {
   })
 
 
+  const [avatarHover, setAvatarHover]
+
+
 
   function buttonPress(e: PressEvent): void {
     const element: string = e.target.textContent ? e.target.textContent.toLowerCase() : ""
@@ -87,7 +90,8 @@ export const Navbar = () => {
       let pages: { label: string, href: string }[] = [
         { label: "Home", href: "/" },
         { label: "Courses", href: "/courses" },
-        { label: "Grade", href: "/grade" },
+        // { label: "Grade", href: "/grade" },
+        //TODO: Move the setting path into the user hover effect dropn donw options
         { label: "Setting", href: "/setting" },
       ]
 
@@ -142,7 +146,8 @@ export const Navbar = () => {
                 <GithubIcon className="text-default-500" />
               </Link></>
             :
-            <Avatar size="sm" isBordered name="Test" />}
+            <Avatar size="sm" className="" isBordered name="Test" />}
+
           <ThemeSwitch />
         </NavbarItem>
       </NavbarContent>

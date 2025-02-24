@@ -6,7 +6,7 @@ import { Button } from "@heroui/button";
 import { Progress } from "@heroui/progress";
 
 
-export default function Grade() {
+export default function Courses() {
     return (
         <Accordion>
 

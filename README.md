@@ -10,6 +10,8 @@ better autolab
 
 Made with react and HeroUI (NextUiI), keeping everything simple and minimum
 
+![preview](Jellyfish-preview.gif)
+
 # Backend - 
 
 Horizontal scale grading soultion

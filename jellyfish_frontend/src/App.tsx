@@ -10,7 +10,8 @@ import Signup from "./pages/signup";
 import { RouterOptions } from "@react-types/shared";
 import { Footer } from "./components/footer";
 import Setting from "./pages/setting";
-import Grade from "./pages/grade";
+import Grade from "./pages/courses";
+import Courses from "./pages/courses";
 
 declare module "@react-types/shared" {
   interface RouterConfig {
@@ -37,7 +38,7 @@ function App() {
           <Route element={<Login/>} path="/login" />
           <Route element={<Signup/>} path="/signup" />
           <Route element={<Setting/>} path="/setting" />
-          <Route element={<Grade/>} path="/grade" />
+          <Route element={<Courses/>} path="/courses" />
         </Routes>
 
       <Footer />
