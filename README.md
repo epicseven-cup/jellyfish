@@ -10,7 +10,8 @@ better autolab
 
 Made with react and HeroUI (NextUiI), keeping everything simple and minimum
 
-![preview](Jellyfish-preview.gif)
+![login](login_jellyfish.mp4)
+![preview](basic_layout.mp4)
 
 # Backend - 
 

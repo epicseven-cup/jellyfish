@@ -43,7 +43,7 @@ export const Navbar = () => {
   })
 
 
-  const [avatarHover, setAvatarHover]
+  // const [avatarHover, setAvatarHover]
 
 
 
