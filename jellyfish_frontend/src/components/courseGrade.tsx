@@ -1,6 +1,4 @@
-import { AccordionItem} from "@heroui/accordion";
-import {Progress} from "@heroui/progress";
-export default function CourseGrade(){
+export default function Course(){
     const grade: number = 30
     return (
         <>
